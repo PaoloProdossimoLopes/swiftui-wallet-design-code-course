@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeSubView: View {
     
     @Binding var showProfile: Bool
+    @State var showUpdate: Bool = false
     
     var body: some View {
         VStack {
@@ -20,6 +21,21 @@ struct HomeSubView: View {
                 Spacer()
                 
                 AvatarView(showProfile: $showProfile)
+                
+                Button(action: { showUpdate.toggle() }) {
+                    Image(systemName: "bell")
+                        .renderingMode(.template)
+                        .font(.system(size: 16, weight: .medium))
+                        .tint(.black)
+                        .frame(width: 36, height: 36)
+                        .background(.white)
+                        .clipShape(Circle())
+                        .shadow(color: .black.opacity(0.1), radius: 1, x: 0, y: 1)
+                        .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
+                }
+            }
+            .sheet(isPresented: $showUpdate) {
+                ContentView()
             }
             .padding(.horizontal)
             .padding(.top, 30)
