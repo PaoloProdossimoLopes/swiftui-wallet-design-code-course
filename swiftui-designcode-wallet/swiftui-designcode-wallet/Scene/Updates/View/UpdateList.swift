@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct UpdateList: View {
+    
+    @ObservedObject var store = UpdateStore()
+    
+    func addUpdate() {
+        store.updates.append(Update(image: "Card1", title: "New Item", text: "Text", date: "Jan 1"))
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
-                ScrollView {
-                    ForEach(updateData) { update in
+                List {
+                    ForEach(store.updates) { update in
                         NavigationLink(destination: {
                             UpdateDetail(update: update)
                         }, label: {
@@ -28,6 +35,7 @@ struct UpdateList: View {
                                 VStack(alignment: .leading, spacing: 8.0) {
                                     Text(update.title)
                                         .font(.system(size: 20, weight: .bold))
+                                        .foregroundColor(.black)
                                     
                                     Text(update.text)
                                         .font(.headline)
@@ -39,15 +47,35 @@ struct UpdateList: View {
                                         .fontWeight(.bold)
                                         .foregroundColor(.secondary)
                                 }
+                                
+                                Spacer()
                             }
+                            .frame(maxWidth: .infinity)
                             .padding(8)
                         })
                         
+                    }
+                    .onDelete { index in
+                        store.updates.remove(at: index.first!)
+                    }
+                    .onMove { (source: IndexSet, destination: Int) in
+                        store.updates.move(fromOffsets: source, toOffset: destination)
                     }
                     Spacer()
                 }
             }
             .navigationTitle("Updates")
+            .navigationBarItems(
+                leading: Button(
+                    action: addUpdate,
+                    label: {
+                        Text("Add Update")
+                    }
+                )
+            )
+            .navigationBarItems(
+                trailing: EditButton()
+            )
         }
     }
 }

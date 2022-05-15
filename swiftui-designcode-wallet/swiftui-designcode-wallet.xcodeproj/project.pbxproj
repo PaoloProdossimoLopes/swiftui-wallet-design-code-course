@@ -21,6 +21,7 @@
 		B1DB987B283129E00044A015 /* HomeSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DB987A283129E00044A015 /* HomeSubView.swift */; };
 		B1DB987F283138B50044A015 /* UpdateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DB987E283138B50044A015 /* UpdateList.swift */; };
 		B1DB98812831457C0044A015 /* UpdateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DB98802831457C0044A015 /* UpdateDetail.swift */; };
+		B1DB9883283148C80044A015 /* UpdateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DB9882283148C80044A015 /* UpdateStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		B1DB987A283129E00044A015 /* HomeSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSubView.swift; sourceTree = "<group>"; };
 		B1DB987E283138B50044A015 /* UpdateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateList.swift; sourceTree = "<group>"; };
 		B1DB98802831457C0044A015 /* UpdateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDetail.swift; sourceTree = "<group>"; };
+		B1DB9882283148C80044A015 /* UpdateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 			children = (
 				B1DB987E283138B50044A015 /* UpdateList.swift */,
 				B1DB98802831457C0044A015 /* UpdateDetail.swift */,
+				B1DB9882283148C80044A015 /* UpdateStore.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				B13DC7472830375900A5AB40 /* BackCardView.swift in Sources */,
 				B13DC6DF282C7C6200A5AB40 /* swiftui_designcode_walletApp.swift in Sources */,
 				B1DB987B283129E00044A015 /* HomeSubView.swift in Sources */,
+				B1DB9883283148C80044A015 /* UpdateStore.swift in Sources */,
 				B13DC7492830376700A5AB40 /* TitleView.swift in Sources */,
 				B1DB98812831457C0044A015 /* UpdateDetail.swift in Sources */,
 			);
