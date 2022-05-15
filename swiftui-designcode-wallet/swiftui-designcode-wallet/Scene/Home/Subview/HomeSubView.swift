@@ -25,9 +25,16 @@ struct HomeSubView: View {
             .padding(.top, 30)
             
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 30) {
+                HStack(spacing: 20) {
                     ForEach(sectionData) { data in
-                        SectionView(data: data)
+                        GeometryReader { geometry in
+                            SectionView(data: data)
+                                .rotation3DEffect(
+                                    .degrees(geometry.frame(in: .global).minX - 20) / -20,
+                                    axis: (x: .zero, y: 10, z: .zero)
+                                )
+                        }
+                        .frame(width: 275, height: 275)
                     }
                 }
                 .padding(.top)
@@ -99,10 +106,10 @@ let sectionData = [
     ),
     Section(
         title: "Prototype design in swiftUI", text: "18 Section",
-        logo: "Logo1", image: Image("Card2"), color: Color("card2")
+        logo: "Logo2", image: Image("Card2"), color: Color("card2")
     ),
     Section(
         title: "Prototype design in swiftUI", text: "18 Section",
-        logo: "Logo1", image: Image("Card3"), color: Color("card3")
+        logo: "Logo3", image: Image("Card3"), color: Color("card3")
     )
 ]
