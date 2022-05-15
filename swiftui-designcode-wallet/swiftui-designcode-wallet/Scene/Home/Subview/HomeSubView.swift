@@ -26,13 +26,14 @@ struct HomeSubView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 30) {
-                    ForEach(0..<5) { _ in
-                        SectionView()
+                    ForEach(sectionData) { data in
+                        SectionView(data: data)
                     }
                 }
+                .padding(.top)
                 .padding(.leading)
+                .padding(.bottom, 40)
             }
-            .shadow(color: Color("card1").opacity(0.3), radius: 20, x: 0, y: 20)
             
             
             Spacer()
@@ -47,32 +48,61 @@ struct HomeSubView_Previews: PreviewProvider {
 }
 
 struct SectionView: View {
+    
+    var data: Section
+    
     var body: some View {
         VStack {
             HStack(alignment: .top) {
-                Text("Prototype design in swiftUI")
+                Text(data.title)
                     .font(.system(size: 24, weight: .bold))
                     .frame(width: 160, alignment: .leading)
                     .foregroundColor(.white)
                 
                 Spacer()
                 
-                Image("Logo1")
+                Image(data.logo)
             }
             
-            Text("18 Section".uppercased())
+            Text(data.text.uppercased())
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            Image("Card1")
+            data.image
                 .resizable()
                 .scaledToFit()
+                .blendMode(.hardLight)
                 .frame(width: 210)
             
         }
         .padding([.top, .horizontal], 20)
         .frame(width: 275, height: 275)
-        .background(Color("card1"))
+        .background(data.color)
         .cornerRadius(30)
-//        .shadow(color: Color("card1").opacity(0.3), radius: 20, x: 0, y: 20)
+        .shadow(color: data.color.opacity(0.2), radius: 10, x: 10, y: 20)
     }
 }
+
+struct Section: Identifiable {
+    let id = UUID()
+    
+    let title: String
+    let text: String
+    let logo: String
+    let image: Image
+    let color: Color
+}
+
+let sectionData = [
+    Section(
+        title: "Prototype design in swiftUI", text: "18 Section",
+        logo: "Logo1", image: Image("Card1"), color: Color("card1")
+    ),
+    Section(
+        title: "Prototype design in swiftUI", text: "18 Section",
+        logo: "Logo1", image: Image("Card2"), color: Color("card2")
+    ),
+    Section(
+        title: "Prototype design in swiftUI", text: "18 Section",
+        logo: "Logo1", image: Image("Card3"), color: Color("card3")
+    )
+]
