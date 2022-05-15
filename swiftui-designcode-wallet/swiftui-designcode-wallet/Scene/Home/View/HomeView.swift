@@ -17,48 +17,29 @@ struct HomeView: View {
             
             Color.gray.opacity(0.2).ignoresSafeArea()
             
-            VStack {
-                HStack {
-                    Text("Watching")
-                        .font(.system(size: 28, weight: .bold))
-                    
-                    Spacer()
-                    
-                    Button(action: { showProfile.toggle() }) {
-                        Image("Avatar").renderingMode(.original)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 36, height: 36)
-                            .clipShape(Circle())
-                    }
-                }
-                .padding(.horizontal)
-                .padding(.top, 30)
-                
-                Spacer()
-            }
-            .padding(.top, 44)
-            .background(.white)
-            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-            .shadow(color: .black.opacity(0.2), radius: 20, x: 0, y: 20)
-            .offset(y: showProfile ? -450 : 0)
-            .scaleEffect(showProfile ? 0.9 : 1)
-            .rotation3DEffect(
-                .init(degrees: showProfile ? ((Double(viewState.height) / 10) - 10) : .zero),
-                axis: (x: 10, y: .zero, z: .zero))
-            .edgesIgnoringSafeArea(.all)
-            .animation(
-                .spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0),
-                value: showProfile
-            )
-            .animation(
-                .spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0),
-                value: viewState
-            )
+            HomeSubView(showProfile: $showProfile)
+                .padding(.top, 44)
+                .background(.white)
+                .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+                .shadow(color: .black.opacity(0.2), radius: 20, x: 0, y: 20)
+                .offset(y: showProfile ? -450 : 0)
+                .scaleEffect(showProfile ? 0.9 : 1)
+                .rotation3DEffect(
+                    .init(degrees: showProfile ? ((Double(viewState.height) / 10) - 10) : .zero),
+                    axis: (x: 10, y: .zero, z: .zero))
+                .edgesIgnoringSafeArea(.all)
+                .animation(
+                    .spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0),
+                    value: showProfile
+                )
+                .animation(
+                    .spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0),
+                    value: viewState
+                )
             
             MenuView()
                 .background(.black.opacity(0.001))
-                .offset(y: showProfile ? 0 : 1000)
+                .offset(y: showProfile ? 0 : screen.height)
                 .offset(y: viewState.height)
                 .animation(
                     .spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0),
@@ -91,3 +72,21 @@ struct HomeView_Previews: PreviewProvider {
         HomeView()
     }
 }
+
+struct AvatarView: View {
+    
+    @Binding var showProfile: Bool
+    
+    var body: some View {
+        Button(action: { showProfile.toggle() }) {
+            Image("Avatar").renderingMode(.original)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 36, height: 36)
+                .clipShape(Circle())
+        }
+    }
+}
+
+
+let screen = UIScreen.main.bounds
