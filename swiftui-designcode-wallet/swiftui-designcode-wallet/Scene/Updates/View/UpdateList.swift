@@ -14,12 +14,12 @@ struct UpdateList: View {
                 ScrollView {
                     ForEach(updateData) { update in
                         NavigationLink(destination: {
-                            Text(update.text)
+                            UpdateDetail(update: update)
                         }, label: {
                             HStack {
                                 Image(update.image)
                                     .resizable()
-                                    .scaledToFit()
+                                    .scaledToFill()
                                     .frame(width: 80, height: 80)
                                     .background(.black)
                                     .cornerRadius(20)

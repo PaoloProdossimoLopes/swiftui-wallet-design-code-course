@@ -20,6 +20,7 @@
 		B13DC753283086E800A5AB40 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13DC752283086E700A5AB40 /* HomeView.swift */; };
 		B1DB987B283129E00044A015 /* HomeSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DB987A283129E00044A015 /* HomeSubView.swift */; };
 		B1DB987F283138B50044A015 /* UpdateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DB987E283138B50044A015 /* UpdateList.swift */; };
+		B1DB98812831457C0044A015 /* UpdateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DB98802831457C0044A015 /* UpdateDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		B13DC752283086E700A5AB40 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B1DB987A283129E00044A015 /* HomeSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSubView.swift; sourceTree = "<group>"; };
 		B1DB987E283138B50044A015 /* UpdateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateList.swift; sourceTree = "<group>"; };
+		B1DB98802831457C0044A015 /* UpdateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				B1DB987E283138B50044A015 /* UpdateList.swift */,
+				B1DB98802831457C0044A015 /* UpdateDetail.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				B13DC6DF282C7C6200A5AB40 /* swiftui_designcode_walletApp.swift in Sources */,
 				B1DB987B283129E00044A015 /* HomeSubView.swift in Sources */,
 				B13DC7492830376700A5AB40 /* TitleView.swift in Sources */,
+				B1DB98812831457C0044A015 /* UpdateDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
