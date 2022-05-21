@@ -86,13 +86,13 @@ struct CertificatesView: View {
                         }
                 )
             
-            BottomCardView()
+            BottomCardView(show: $showCardView)
                 .offset(x: 0, y: showCardView ? 360 : 1000)
                 .offset(y: bottomState.height)
                 .blur(radius: show ? 20 : 0)
                 .animation(.default, value: show)
                 .animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 0.8), value: bottomState)
-                .animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 0.8), value: showCardView)
+                .animation(.easeInOut, value: showCardView)
                 //you can visit cubic-bezier.com to test your curves paramenter
                 .gesture(
                     DragGesture()

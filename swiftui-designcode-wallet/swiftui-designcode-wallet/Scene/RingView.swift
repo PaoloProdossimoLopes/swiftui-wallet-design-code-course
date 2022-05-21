@@ -9,21 +9,22 @@ import SwiftUI
 
 struct RingView: View {
     
-    //colors
     private let darkPourpleColor: Color = .init(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1))
     private let strongPinkColor: Color = .init(#colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1))
     
     private let lineWidth: CGFloat = 5
-    
-    //sizes
-    private let height: CGFloat = 44
-    private let width: CGFloat = 44
-    
-    //
     private var multiplier: CGFloat { width / 44 }
-    private let progress = 86
+    
+    var height: CGFloat = 44
+    var width: CGFloat = 44
+    var progress: CGFloat = 86
+    
+    @Binding var show: Bool
     
     var body: some View {
+        
+        let statePercentage = (1 - (progress / 100))
+        
         ZStack {
             Circle()
                 .stroke(
@@ -33,7 +34,7 @@ struct RingView: View {
                 .frame(width: width, height: height)
             
             Circle()
-                .trim(from: 0.5, to: 1)
+                .trim(from: show ? statePercentage : 1, to: 1)
                 .stroke(
                     LinearGradient(
                         colors: [strongPinkColor, darkPourpleColor],
@@ -55,17 +56,23 @@ struct RingView: View {
                     x: .zero, y: 3 * multiplier
                 )
             
-            Text("\(progress)%")
+            Text("\(Int(progress))%")
                 .foregroundColor(.black)
                 .font(.system(size: 14 * multiplier))
                 .fontWeight(.bold)
+                .onTapGesture { show.toggle() }
         }
+        .animation(.easeInOut, value: show)
     }
 }
 
 struct RingView_Previews: PreviewProvider {
     static var previews: some View {
-        RingView()
+        RingView(show: .constant(true))
+            .previewLayout(.sizeThatFits)
+            .padding()
+        
+        RingView(show: .constant(false))
             .previewLayout(.sizeThatFits)
             .padding()
     }
