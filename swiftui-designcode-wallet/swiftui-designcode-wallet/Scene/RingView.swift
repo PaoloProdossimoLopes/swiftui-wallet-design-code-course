@@ -9,17 +9,28 @@ import SwiftUI
 
 struct RingView: View {
     
+    //colors
     private let darkPourpleColor: Color = .init(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1))
     private let strongPinkColor: Color = .init(#colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1))
+    
+    private let lineWidth: CGFloat = 5
+    
+    //sizes
+    private let height: CGFloat = 44
+    private let width: CGFloat = 44
+    
+    //
+    private var multiplier: CGFloat { width / 44 }
+    private let progress = 86
     
     var body: some View {
         ZStack {
             Circle()
                 .stroke(
                     Color.black.opacity(0.1),
-                    style: StrokeStyle(lineWidth: 5)
+                    style: StrokeStyle(lineWidth: multiplier * lineWidth)
                 )
-                .frame(width: 44, height: 44)
+                .frame(width: width, height: height)
             
             Circle()
                 .trim(from: 0.5, to: 1)
@@ -30,22 +41,23 @@ struct RingView: View {
                         endPoint: .bottomLeading
                     ),
                     style: StrokeStyle(
-                        lineWidth: 5, lineCap: .round,
+                        lineWidth: multiplier * lineWidth, lineCap: .round,
                         lineJoin: .round, miterLimit: .infinity,
-                        dash: [], dashPhase: 0
+                        dash: [], dashPhase: .zero
                     )
                 )
                 .rotationEffect(.init(degrees: 90))
-                .rotation3DEffect(.init(degrees: 180), axis: (x: 1, y: 0, z: 0))
-                .frame(width: 44, height: 44)
+                .rotation3DEffect(.init(degrees: 180), axis: (x: 1, y: .zero, z: .zero))
+                .frame(width: width, height: height)
                 .shadow(
                     color: darkPourpleColor.opacity(0.1),
                     radius: 3,
-                    x: 0, y: 3
-            )
+                    x: .zero, y: 3 * multiplier
+                )
             
-            Text("82%")
-                .font(.caption)
+            Text("\(progress)%")
+                .foregroundColor(.black)
+                .font(.system(size: 14 * multiplier))
                 .fontWeight(.bold)
         }
     }
@@ -54,5 +66,7 @@ struct RingView: View {
 struct RingView_Previews: PreviewProvider {
     static var previews: some View {
         RingView()
+            .previewLayout(.sizeThatFits)
+            .padding()
     }
 }
